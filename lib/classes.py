@@ -1,10 +1,17 @@
 import random
 from pathlib import Path
+import json
+import os
 
 class Player:
   
   def __init__(self, input_name, input_role):
-    self.items = {"Healing Potion": 3}
+    self.items = {}
+    with open("lib\items.json") as f:
+        items = json.load(f)
+        for key in items.values():
+           for key1, value1 in key.items():
+            self.items[key1] = value1
     self.damage = 15
     self.name = input_name
     if input_role == "Rogue":
@@ -43,7 +50,8 @@ class Player:
 
   def hero_items(self):
     for item in self.items:
-      print(f"{item}: {self.items[item]}")
+      print(self.items)
+      # print(f"{item}: {self.items[item]}")
     item_to_use = input("Please pick an item to use:\n")
     if item_to_use == "Healing Potion" and self.items[item] > 0:
       self.health += 50

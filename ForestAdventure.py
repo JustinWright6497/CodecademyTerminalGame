@@ -35,7 +35,6 @@ while give_it_a_try == 0:
           hero.health = 0
       if enemy.health > 0 and hero.health > 0:
         enemy_move = random.randint(1, 100)
-        print(enemy_move)
         if enemy_move > 20:
           enemy.enemy_attack(hero)
         elif enemy_move > 5:
