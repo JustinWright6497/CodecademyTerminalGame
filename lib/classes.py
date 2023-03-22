@@ -56,6 +56,8 @@ class Player:
 
 class Enemy:
   
+  defeated = 0
+
   def __init__(self):
     random_name = random.randint(2, 4)
     #if random_name == 0:

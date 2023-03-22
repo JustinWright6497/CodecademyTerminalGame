@@ -1,4 +1,4 @@
-from CodecademyTerminalGame.lib import classes
+from lib import classes
 import random
 
 give_it_a_try = 0
@@ -14,8 +14,10 @@ while give_it_a_try == 0:
     enemy = classes.Enemy()
     print(f"{enemy.name} has come from the forest before you to fight!")
     while enemy.health > 0 and hero.health > 0 and enemy.leaving == 0:
+      turn_count = 0
       hero_move = 1
       while hero_move != 0:
+        print(f"{hero.name} has {hero.health} health left!")        
         hero_input = input("What would you like to do: Attack, Use Items, or See hero stats?\n")
         if hero_input == "Attack":
           hero.hero_attack(enemy)
@@ -36,9 +38,15 @@ while give_it_a_try == 0:
           enemy.enemy_attack(hero)
       else:
         print(f"{enemy.name} has been defeated!")
+        classes.Enemy.defeated += 1
+      print("-------------------------------------------------------------------------------------------------")
   continue_input = input("Oh no your hero has died... Would you like to find a new hero and continue? (Yes or No)\n")
   if continue_input == "Yes":
     give_it_a_try = 0
+    print(f"{hero.name} defeated {classes.Enemy.defeated} enemies!")
+    classes.Enemy.defeated = 0
+
   else:
     give_it_a_try = 1
+    print(f"{hero.name} defeated {classes.Enemy.defeated} enemies!")
     print("Have a great day adventurer!")
