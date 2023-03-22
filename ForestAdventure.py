@@ -11,14 +11,16 @@ while give_it_a_try == 0:
 
   hero = classes.Player(hero_name, hero_role)
   while hero.health > 0:
+    turn_count = 1
     enemy = classes.Enemy()
+    print("-------------------------------------------------------------------------------------------------")
     print(f"{enemy.name} has come from the forest before you to fight!")
     while enemy.health > 0 and hero.health > 0 and enemy.leaving == 0:
-      turn_count = 0
       hero_move = 1
+      print(f"TURN {turn_count}")
       while hero_move != 0:
         print(f"{hero.name} has {hero.health} health left!")        
-        hero_input = input("What would you like to do: Attack, Use Items, or See hero stats?\n")
+        hero_input = input("What would you like to do: Attack, Use Items, See hero stats, or Exit?\n")
         if hero_input == "Attack":
           hero.hero_attack(enemy)
           hero_move = 0
@@ -28,17 +30,24 @@ while give_it_a_try == 0:
         if hero_input == "See hero stats":
           hero.__repr__()
           hero_move = 1
-      if enemy.health > 0:
+        if hero_input == "Exit":
+          hero_move = 0
+          hero.health = 0
+      if enemy.health > 0 and hero.health > 0:
         enemy_move = random.randint(1, 100)
-        if enemy_move < 6:
-          enemy.tell_enemy_your_tale(hero)
-        elif enemy_move < 20:
+        print(enemy_move)
+        if enemy_move > 20:
+          enemy.enemy_attack(hero)
+        elif enemy_move > 5:
           enemy.sleep()
         else:
-          enemy.enemy_attack(hero)
-      else:
+          enemy.tell_enemy_your_tale(hero)
+      elif enemy.health <= 0:
         print(f"{enemy.name} has been defeated!")
         classes.Enemy.defeated += 1
+      else:
+        print("You have chose to Exit from this hero.")
+      turn_count += 1
       print("-------------------------------------------------------------------------------------------------")
   continue_input = input("Oh no your hero has died... Would you like to find a new hero and continue? (Yes or No)\n")
   if continue_input == "Yes":

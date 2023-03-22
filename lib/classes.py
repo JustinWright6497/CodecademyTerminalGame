@@ -1,4 +1,5 @@
 import random
+from pathlib import Path
 
 class Player:
   
@@ -103,37 +104,50 @@ class Enemy:
       #else:
         #continue
     if character == "Lord Farquad":
-      print("When I was a young lad my height caused laughter")
-      print("I spent my young adult years wearing false legs and collecting loyal servants")
-      cont = input("Do you care to continue hearing their story? (Yes or No)")
-      if cont == "Yes":
-        print("My fortress was built and gained success in the kingdom")
-        print("Now that I am rich I must catfish myself a tall, beautiful princess to marry")
-        print("Thank you peasant for listening to my story. I leave you with this:")
-        self.leaving = 1
-      else:
-        print(f"{self.name} smirks.")
+      print(f"{self.name} wishes to tell you their story!")
+      filepath = Path(__file__).parent/"Lord_Farquad.txt"
+      with open(filepath) as f:
+        n = 0
+        for i in f:
+            print(i.strip("\n"))
+            n+= 1
+            if n == 2:
+                cont = input("Do you care to continue hearing their story? (Yes or No) ")
+                if cont == "Yes":
+                    self.leaving = 1
+                else:
+                    print(f"{self.name} smirks.")
+                    break
     elif character == "Dog, Kell of Barkus":
-      print("Bark")
-      print("Bark")
-      cont = input("Do you care to continue hearing their story? (Yes or No)")
-      if cont == "Yes":
-        print("Bark")
-        print("Lick")
-        self.leaving = 1
-      else:
-        print(f"{self.name} whines.")
+      print(f"{self.name} wishes to tell you their story!")
+      filepath = Path(__file__).parent/"Dog.txt"
+      with open(filepath) as f:
+        n = 0
+        for i in f:
+            print(i.strip("\n"))
+            n+= 1
+            if n == 2:
+                cont = input("Do you care to continue hearing their story? (Yes or No) ")
+                if cont == "Yes":
+                    self.leaving = 1
+                else:
+                    print(f"{self.name} whines.")
+                    break
     elif character == "The Metal, Vessel of Hell":
-      print("Many foes sought my demise, many tried to kill me; but I cannot die.")
-      print("They attempted to dethrone an immortal king.")
-      cont = input("Do you care to continue hearing their story? (Yes or No)")
-      if cont == "Yes":
-        print("But they failed, as they were stricken down to the ground.")
-        print("No one can destroy The Metal.")
-        print("Thank you for listening to my story, adventurer. For now I will retreat but I leave you with this:")
-        self.leaving = 1
-      else:
-        print(f"{self.name} giggles.")
+      print(f"{self.name} wishes to tell you their story!")
+      filepath = Path(__file__).parent/"The_Metal.txt"
+      with open(filepath) as f:
+        n = 0
+        for i in f:
+            print(i.strip("\n"))
+            n+= 1
+            if n == 2:
+                cont = input("Do you care to continue hearing their story? (Yes or No) ")
+                if cont == "Yes":
+                    self.leaving = 1
+                else:
+                    print(f"{self.name} giggles.")
+                    break
     #elif character == 
     #elif character == 
     #elif character == 
